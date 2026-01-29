@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+
+
+<body>
+    <canvas id="myCanvas" width="640" height="370" style="border:3px solid grey"></canvas>
+    <script>
+  let y = 0
+  let oy = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+  let x = 0
+  let ox = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+  let xup = 1
+  let yup = 1
+  let speed = 4
+  const c = document.getElementById("myCanvas");
+  const ctx = c.getContext("2d");
+    window.setInterval(function(){
+      ctx.clearRect(0, 0, 640, 370);
+      ctx.beginPath()
+        ctx.moveTo(ox[0],oy[0])
+        for(a in ox){
+          ctx.lineTo(ox[a],oy[a])
+        }
+        ctx.lineTo(x,y)
+        ctx.stroke()
+        oy.push(y)
+        ox.push(x)
+        oy.shift()
+        ox.shift()
+        y+=yup*speed
+        x+=xup*speed
+        if(x>=640){
+          xup=-1
+        }if(x<=0){
+          xup=1
+        }if(y>=370){
+          yup=-1
+        }if(y<=0){
+          yup=1
+        }
+         
+    },10)
+
+    
+</script>
+<style>
+  canvas{
+    width:680px;
+    height: 90%;
+    position: relative;
+    
+    
+    
+  }
+</style>
+</body>
+
+</html>
